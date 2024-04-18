@@ -7,8 +7,8 @@ from langchain.memory import ConversationBufferWindowMemory
 from transformers import pipeline
 import matplotlib.pyplot as plt
 from dotenv import load_dotenv
-load_dotenv()
 
+load_dotenv()
 
 conversation_with_summary = ConversationChain(
     llm=OpenAI(temperature=0, model_name="gpt-3.5-turbo"),
@@ -50,15 +50,17 @@ def main():
     def visualize_sentiment_analysis(elements):
         sentiment_counts = {label: elements.count(label) for label in set(elements)}
 
-        labels = sentiment_counts.keys()
-        sizes = sentiment_counts.values()
-        colors = ['green', 'red', 'gray']
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
+        ax1.pie(sentiment_counts.values(), labels=sentiment_counts.keys(), autopct='%1.1f%%', startangle=140,
+                colors=['green', 'red', 'yellow'])
+        ax1.set_title('Sentiment Analysis (Pie Chart)')
 
-        fig, ax = plt.subplots()
-        ax.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', startangle=140)
-        ax.set_title('Sentiment Analysis Results')
+        ax2.bar(sentiment_counts.keys(), sentiment_counts.values(), color=['green', 'red', 'yellow'])
+        ax2.set_title('Sentiment Analysis (Bar Graph)')
+        ax2.set_xlabel('Sentiment')
+        ax2.set_ylabel('Count')
+
         st.pyplot(fig)
-
 
     if st.sidebar.button("Perform Sentiment Analysis"):
         if st.session_state.bot_responses:
