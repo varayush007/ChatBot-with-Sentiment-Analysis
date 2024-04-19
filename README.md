@@ -16,7 +16,7 @@ sentiment analysis functionality to analyze the sentiment of the chatbot's respo
     
     **Bash**
     
-        git clone https://github.com/your-username/store-helper
+        git clone https://github.com/your-username/ChatBot-with-Sentiment-Analysis
     
 2.  **Install dependencies:**
     
