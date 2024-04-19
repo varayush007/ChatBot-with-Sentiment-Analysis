@@ -25,7 +25,7 @@ def main():
     if "bot_responses" not in st.session_state:
         st.session_state.bot_responses = []
 
-    user_input = st.text_input("Ask something to Chat with the bot or type quit to exit")
+    user_input = st.text_input("Type question to start chatting or type quit to exit")
 
     if st.button("Send"):
         if user_input.lower() == 'quit':
